@@ -1,0 +1,53 @@
+[tool.poetry]
+name = "choose-me-a-cloud-back"
+version = "0.1.0"
+description = ""
+authors = ["TheRoniOne <42548202+TheRoniOne@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+Django = "^4.2.5"
+djangorestframework = "^3.14.0"
+djangorestframework-simplejwt = "^5.3.0"
+django-environ = "^0.11.2"
+drf-spectacular = "^0.26.5"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.9.1"
+ruff = "^0.0.292"
+django-stubs = { extras = ["compatible-mypy"], version = "^4.2.4" }
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.4.2"
+pytest-django = "^4.5.2"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = ["migrations"]
+
+[tool.ruff.isort]
+known-first-party = ["users", "config"]
+
+[tool.black]
+line-length = 100
+target-version = ['py311']
+
+
+[tool.mypy]
+plugins = ["mypy_django_plugin.main"]
+
+[tool.django-stubs]
+django_settings_module = "config.settings.local"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings.test"
+django_find_project = true
+django_debug_mode = "keep"
+addopts = "--reuse-db"
+testpaths = ["tests"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

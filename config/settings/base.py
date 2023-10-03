@@ -55,6 +55,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "rest_framework",
     "drf_spectacular",
+    "corsheaders",
 ]
 
 LOCAL_APPS = [
@@ -84,8 +85,15 @@ SPECTACULAR_SETTINGS = {
     "SERVE_INCLUDE_SCHEMA": False,
 }
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "https://localhost:3000",
+    "https://127.0.0.1:3000",
+]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",

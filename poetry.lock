@@ -122,6 +122,20 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-cors-headers"
+version = "4.2.0"
+description = "django-cors-headers is a Django application for handling the server headers required for Cross-Origin Resource Sharing (CORS)."
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "django_cors_headers-4.2.0-py3-none-any.whl", hash = "sha256:9ada212b0e2efd4a5e339360ffc869cb21ac5605e810afe69f7308e577ea5bde"},
+    {file = "django_cors_headers-4.2.0.tar.gz", hash = "sha256:f9749c6410fe738278bc2b6ef17f05195bc7b251693c035752d8257026af024f"},
+]
+
+[package.dependencies]
+Django = ">=3.2"
+
+[[package]]
 name = "django-environ"
 version = "0.11.2"
 description = "A package that allows you to utilize 12factor inspired environment variables to configure your Django application."
@@ -152,7 +166,7 @@ files = [
 django = "*"
 django-stubs-ext = ">=4.2.2"
 mypy = [
-    {version = ">=1.0.0", optional = true, markers = "extra != \"compatible-mypy\""},
+    {version = ">=1.0.0"},
     {version = "==1.5.*", optional = true, markers = "extra == \"compatible-mypy\""},
 ]
 types-pytz = "*"
@@ -740,4 +754,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "eb3fc2c53fe1d3bc4b31925dc128126a6488b33bd5286bb6e7756b7779e26012"
+content-hash = "8712981d9376891eb07bc2eab020ee1a5b2b2d713d120e09a2402d1289acc6ca"

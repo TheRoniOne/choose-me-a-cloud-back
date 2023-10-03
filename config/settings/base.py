@@ -50,7 +50,6 @@ DJANGO_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    
 ]
 
 THIRD_PARTY_APPS = [
@@ -70,14 +69,17 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 10,
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAuthenticated",
+        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly",
     ],
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
 }
 
 SPECTACULAR_SETTINGS = {
-    "TITLE": "Doomsday API",
-    "DESCRIPTION": "Doomsday API",
+    "TITLE": "Choose me a cloud API",
+    "DESCRIPTION": "Choose me a cloud API",
     "VERSION": "0.1.0",
     "SERVE_INCLUDE_SCHEMA": False,
 }

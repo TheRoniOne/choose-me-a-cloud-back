@@ -18,6 +18,10 @@ django-cors-headers = "^4.2.0"
 black = "^23.9.1"
 ruff = "^0.1.0"
 django-stubs = { extras = ["compatible-mypy"], version = "^4.2.4" }
+djangorestframework-stubs = { extras = [
+    "compatible-mypy",
+], version = "^3.14.4" }
+
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.4.2"
@@ -37,7 +41,7 @@ target-version = ['py311']
 
 
 [tool.mypy]
-plugins = ["mypy_django_plugin.main"]
+plugins = ["mypy_django_plugin.main", "mypy_drf_plugin.main"]
 
 [tool.django-stubs]
 django_settings_module = "config.settings.local"

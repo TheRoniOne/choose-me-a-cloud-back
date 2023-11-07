@@ -26,17 +26,18 @@ env = FileAwareEnv(
     DJANGO_DB_PORT=(str, "5432"),
     STATIC_ROOT_PATH=(str, str(BASE_DIR / "static")),
     MEDIA_ROOT_PATH=(str, str(BASE_DIR / "media")),
+    DEBUG=(bool, True),
+    AUTH_COOKIE_SECURE=(bool, False),
+    AUTH_COOKIE_HTTP_ONLY=(bool, False),
 )
 
 
 env.read_env(str(BASE_DIR / ".env"))
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("DJANGO_SECRET_KEY")
+
+DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = ["*"]
 
@@ -74,7 +75,7 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "users.authentication.CustomJWTStatelessUserAuthentication",
     ),
 }
 
@@ -93,6 +94,14 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CORS_ALLOW_CREDENTIALS = True
+
+AUTH_COOKIE = "access"
+AUTH_COOKIE_MAX_AGE = 10 * 60
+AUTH_COOKIE_REFRESH_MAX_AGE = 4 * 7 * 24 * 60 * 60
+AUTH_COOKIE_SECURE = env("AUTH_COOKIE_SECURE")
+AUTH_COOKIE_HTTP_ONLY = env("AUTH_COOKIE_HTTP_ONLY")
+AUTH_COOKIE_PATH = "/"
+AUTH_COOKIE_SAMESITE = "None"
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",

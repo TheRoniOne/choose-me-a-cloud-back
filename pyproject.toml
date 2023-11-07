@@ -16,7 +16,7 @@ django-cors-headers = "^4.2.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.9.1"
-ruff = "^0.0.292"
+ruff = "^0.1.0"
 django-stubs = { extras = ["compatible-mypy"], version = "^4.2.4" }
 
 [tool.poetry.group.test.dependencies]
@@ -29,7 +29,7 @@ target-version = "py311"
 extend-exclude = ["migrations"]
 
 [tool.ruff.isort]
-known-first-party = ["users", "config"]
+known-first-party = ["users", "config", "commons"]
 
 [tool.black]
 line-length = 100

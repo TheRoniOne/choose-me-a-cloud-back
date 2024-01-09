@@ -57,6 +57,8 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "drf_spectacular",
     "corsheaders",
+    "rest_framework_simplejwt",
+    "django_celery_beat",
 ]
 
 LOCAL_APPS = [

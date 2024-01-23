@@ -38,7 +38,7 @@ ignore = ["F403"]
 extend-select = ["I"]
 
 [tool.ruff.isort]
-known-first-party = ["users", "config", "commons"]
+known-first-party = ["users", "config", "commons", "clouds", "tests"]
 
 
 [tool.mypy]

@@ -10,16 +10,12 @@ class VendorSerializer(ModelSerializer):
 
 
 class CloudSerializer(ModelSerializer):
-    vendor = VendorSerializer()
-
     class Meta:
         model = Cloud
         fields = ["id", "name", "vendor"]
 
 
 class ProductSerializer(ModelSerializer):
-    cloud = CloudSerializer()
-
     class Meta:
         model = Product
         fields = ["id", "name", "type", "cloud"]

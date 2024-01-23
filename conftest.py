@@ -17,7 +17,7 @@ def unauthenticated_api():
 
 @fixture
 def internal_user():
-    return UserFactory.create()
+    return UserFactory.create(is_staff=True, is_superuser=True)
 
 
 @fixture

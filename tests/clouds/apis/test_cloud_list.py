@@ -1,5 +1,6 @@
-from factories import CloudFactory
 from rest_framework.reverse import reverse
+
+from tests.clouds.factories import CloudFactory
 
 
 def test_cloud_list(api):

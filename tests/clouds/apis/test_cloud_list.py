@@ -8,4 +8,4 @@ def test_cloud_list(api):
     response = api.get(reverse("clouds:cloud-list"))
 
     assert response.status_code == 200
-    assert len(response.data) == 3
+    assert response.json()["count"] == 3

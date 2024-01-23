@@ -35,6 +35,7 @@ line-length = 100
 target-version = "py311"
 extend-exclude = ["migrations"]
 ignore = ["F403"]
+extend-select = ["I"]
 
 [tool.ruff.isort]
 known-first-party = ["users", "config", "commons"]

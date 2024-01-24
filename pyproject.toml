@@ -13,7 +13,7 @@ djangorestframework-simplejwt = "^5.3.0"
 django-environ = "^0.11.2"
 drf-spectacular = "^0.26.5"
 django-cors-headers = "^4.2.0"
-celery = {extras = ["redis"], version = "^5.3.6"}
+celery = { extras = ["redis"], version = "^5.3.6" }
 django-celery-beat = "^2.5.0"
 
 [tool.poetry.group.dev.dependencies]
@@ -27,14 +27,18 @@ djangorestframework-stubs = { extras = [
 [tool.poetry.group.test.dependencies]
 pytest = "^7.4.2"
 pytest-django = "^4.5.2"
+pytest-cov = "^4.1.0"
+factory-boy = "^3.3.0"
 
 [tool.ruff]
 line-length = 100
 target-version = "py311"
 extend-exclude = ["migrations"]
+ignore = ["F403"]
+extend-select = ["I"]
 
 [tool.ruff.isort]
-known-first-party = ["users", "config", "commons"]
+known-first-party = ["users", "config", "commons", "clouds", "tests"]
 
 
 [tool.mypy]

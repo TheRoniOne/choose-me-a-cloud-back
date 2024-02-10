@@ -9,6 +9,7 @@ from rest_framework.viewsets import ModelViewSet
 from clouds.apis.serializers import CloudSerializer, ProductSerializer, VendorSerializer
 from clouds.models import Cloud, Product, Vendor
 from clouds.tasks.task_refresh_products import task_refresh_products
+from commons.api.filters import NameContainsFilter
 from commons.api.serializers import NameSerializer
 
 
@@ -51,6 +52,8 @@ class CloudNameListAPIView(ListAPIView):
     queryset = Cloud.objects.all()
     serializer_class = NameSerializer
     pagination_class = None
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = NameContainsFilter
 
 
 class ProductNameListAPIView(ListAPIView):

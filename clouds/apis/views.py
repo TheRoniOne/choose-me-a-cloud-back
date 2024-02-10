@@ -25,7 +25,6 @@ class CloudViewSet(ModelViewSet):
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    filter_backends = [DjangoFilterBackend]
 
     def get_permissions(self):
         if self.action == "destroy" or self.action == "refresh":
@@ -58,3 +57,5 @@ class ProductNameListAPIView(ListAPIView):
     queryset = Product.objects.all()
     serializer_class = NameSerializer
     pagination_class = None
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = ["type"]

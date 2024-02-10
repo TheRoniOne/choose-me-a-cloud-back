@@ -1,4 +1,4 @@
-from django.urls import include, path
+from django.urls import include, re_path
 from rest_framework.routers import SimpleRouter
 
 from clouds.apis.views import (
@@ -19,8 +19,8 @@ router.register("product", ProductViewSet, basename="product")
 
 
 urlpatterns = [
-    path("", include(router.urls)),
-    path("vendor/names/", VendorNameListAPIView.as_view(), name="vendor_names"),
-    path("cloud/names/", CloudNameListAPIView.as_view(), name="cloud_names"),
-    path("product/names/", ProductNameListAPIView.as_view(), name="product_names"),
+    re_path("", include(router.urls)),
+    re_path("vendor/names", VendorNameListAPIView.as_view(), name="vendor_names"),
+    re_path("cloud/names", CloudNameListAPIView.as_view(), name="cloud_names"),
+    re_path("product/names", ProductNameListAPIView.as_view(), name="product_names"),
 ]

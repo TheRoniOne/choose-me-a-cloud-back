@@ -1,6 +1,15 @@
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, UserManager
-from django.db.models import BooleanField, CharField, EmailField
+from django.db.models import (
+    CASCADE,
+    BooleanField,
+    CharField,
+    EmailField,
+    ForeignKey,
+    PositiveIntegerField,
+    UniqueConstraint,
+)
 
+from clouds.models import Product
 from commons.models import TimeStampedModel
 
 
@@ -19,3 +28,12 @@ class User(AbstractBaseUser, PermissionsMixin, TimeStampedModel):
 
     def __str__(self):
         return f"{self.username} - {self.first_name} {self.last_name}"
+
+
+class ShoppingCart(TimeStampedModel):
+    class Meta:
+        constraints = [UniqueConstraint(fields=["user", "product"], name="unique_user_product")]
+
+    user = ForeignKey(User, on_delete=CASCADE, related_name="cart_items")
+    product = ForeignKey(Product, on_delete=CASCADE, related_name="cart_items")
+    quantity = PositiveIntegerField()

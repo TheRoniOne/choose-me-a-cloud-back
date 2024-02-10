@@ -1,8 +1,11 @@
 from rest_framework.response import Response
 from rest_framework.status import HTTP_204_NO_CONTENT
 from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
+from commons.api.filters import IsOwnerFilterBackend
+from commons.api.mixins import UserMixin
 from config.settings.base import (
     AUTH_COOKIE_HTTP_ONLY,
     AUTH_COOKIE_MAX_AGE,
@@ -11,6 +14,8 @@ from config.settings.base import (
     AUTH_COOKIE_SAMESITE,
     AUTH_COOKIE_SECURE,
 )
+from users.apis.serialzers import ShoppingCartSerializer
+from users.models import ShoppingCart
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
@@ -88,3 +93,9 @@ class LogoutView(APIView):
         response.delete_cookie("refresh")
 
         return response
+
+
+class ShoppingCartViewSet(ModelViewSet, UserMixin):
+    queryset = ShoppingCart.objects.all()
+    serializer_class = ShoppingCartSerializer
+    filter_backends = [IsOwnerFilterBackend]

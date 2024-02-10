@@ -58,4 +58,4 @@ class ProductNameListAPIView(ListAPIView):
     serializer_class = NameSerializer
     pagination_class = None
     filter_backends = [DjangoFilterBackend]
-    filter_fields = ["type"]
+    filterset_fields = ["cloud", "type"]

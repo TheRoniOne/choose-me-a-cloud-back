@@ -8,4 +8,4 @@ class IsOwnerFilterBackend(BaseFilterBackend):
 
 
 class NameContainsFilter(FilterSet):
-    name = CharFilter(lookup_expr="name__icontains")
+    name = CharFilter(lookup_expr="icontains")

@@ -20,6 +20,18 @@ def test_cloud_names(api):
     assert len(response.json()) == 3
 
 
+def test_cloud_names_filter_by_name(api):
+    CloudFactory.create(name="GCP")
+    CloudFactory.create(name="AWS")
+    CloudFactory.create(name="AZURE")
+
+    response = api.get(reverse("clouds:cloud_names"), data={"name": "g"})
+
+    assert response.status_code == 200
+    assert len(response.json()) == 1
+    assert response.json()[0]["name"] == "GCP"
+
+
 def test_product_names(api):
     ProductFactory.create_batch(3)
     response = api.get(reverse("clouds:product_names"))

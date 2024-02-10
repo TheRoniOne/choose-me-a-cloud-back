@@ -1,3 +1,4 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.decorators import action
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAdminUser
@@ -5,10 +6,15 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_204_NO_CONTENT
 from rest_framework.viewsets import ModelViewSet
 
-from clouds.apis.serializers import CloudSerializer, ProductSerializer
+from clouds.apis.serializers import CloudSerializer, ProductSerializer, VendorSerializer
 from clouds.models import Cloud, Product, Vendor
 from clouds.tasks.task_refresh_products import task_refresh_products
 from commons.api.serializers import NameSerializer
+
+
+class VendorViewSet(ModelViewSet):
+    queryset = Vendor.objects.all()
+    serializer_class = VendorSerializer
 
 
 class CloudViewSet(ModelViewSet):
@@ -19,6 +25,7 @@ class CloudViewSet(ModelViewSet):
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    filter_backends = [DjangoFilterBackend]
 
     def get_permissions(self):
         if self.action == "destroy" or self.action == "refresh":

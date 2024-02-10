@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import re_path
 
 from users.apis.views import (
     CustomTokenObtainPairView,
@@ -10,8 +10,8 @@ from users.apis.views import (
 app_name = "users"
 
 urlpatterns = [
-    path("jwt/create/", CustomTokenObtainPairView.as_view(), name="login"),
-    path("jwt/refresh/", CustomTokenRefreshView.as_view(), name="refresh"),
-    path("jwt/verify/", CustomTokenVerifyView.as_view(), name="verify"),
-    path("logout/", LogoutView.as_view(), name="logout"),
+    re_path("jwt/create/", CustomTokenObtainPairView.as_view(), name="login"),
+    re_path("jwt/refresh/", CustomTokenRefreshView.as_view(), name="refresh"),
+    re_path("jwt/verify/", CustomTokenVerifyView.as_view(), name="verify"),
+    re_path("logout/", LogoutView.as_view(), name="logout"),
 ]
